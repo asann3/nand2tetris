@@ -20,5 +20,8 @@ CHIP Mux8Way16 {
     OUT out[16];
 
     PARTS:
-    //// Replace this comment with your code.
+    Mux4Way16(a=a, b=b, c=c, d=d, sel=sel[0..1], out=outabcd); // 00-11
+    Mux4Way16(a=e, b=f, c=g, d=h, sel=sel[0..1], out=outefgh); // 00-11
+    // if sel 0xx then out 000-011 else if sel 1xx then out 100-111
+    Mux16(a=outabcd, b=outefgh, sel=sel[2], out=out);
 }
